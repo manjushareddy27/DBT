@@ -5,7 +5,7 @@ Mini Data Hub is designed to manage company, contact, and interaction data throu
 ## App structure
 This is a monorepo containing two sub-apps.
   - `/api/`: the Django backend
-  - `api/mini_hub_api/`: Rails API only application(sub module)
+  - `api/minihub_api/`: Rails API only application(sub module)
   - `/ui/`: the React frontend
 
   Approach to the Solution
