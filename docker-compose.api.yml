@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  api:
+    build: ./api
+    command: >
+      bash -c "dockerize -wait tcp://db:5432
+      && python manage.py migrate
+      && python manage.py loaddata minihub/fixtures/*.json
+      && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: ditinterview.settings
+    volumes:
+      - ./api:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
